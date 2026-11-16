@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: videoprokat-api
+    runtime: go
+    plan: free
+    region: frankfurt
+    buildCommand: go build -tags netgo -ldflags '-s -w' -o app
+    startCommand: ./app
+    healthCheckPath: /api/health
+    envVars:
+      - key: ALLOWED_ORIGINS
+        value: https://wildbober228.github.io,http://localhost:5173,http://localhost:4173
